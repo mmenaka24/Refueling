@@ -11,15 +11,21 @@ def main():
 
 
 def convert(fraction):
-    xstr, ystr = fraction.split("/")
-    x = int(xstr)
-    y = int(ystr)
+    try:
+        xstr, ystr = fraction.split("/")
+        x = int(xstr)
+        y = int(ystr)
+    except (ValueError, AttributeError):
+        # Raised if the string can't be split or the parts can't be converted
+        raise ValueError
+
     if y == 0:
         raise ZeroDivisionError
-    if not x > y:
-        return round((x / y) * 100)
-    else:
+
+    if x < 0 or y < 0 or x > y:
         raise ValueError
+
+    return round((x / y) * 100)
 
 
 def gauge(percentage):

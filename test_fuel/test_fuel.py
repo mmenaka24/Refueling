@@ -22,10 +22,22 @@ def test_convert_value_err():
         convert("2/cat")
     with pytest.raises(ValueError):
         convert("cat/dog")
+
+
+def test_convert_floats():
     with pytest.raises(ValueError):
         convert("1.5/3")
     with pytest.raises(ValueError):
+        convert("0.5/1.0")
+
+
+def test_convert_invalid_percentage():
+    with pytest.raises(ValueError):
         convert("5/4")
+    with pytest.raises(ValueError):
+        convert("-1/2")
+    with pytest.raises(ValueError):
+        convert("1/-2")
 
 
 def test_convert_zero_division_err():
